@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# coding=utf-8
 
 """ Autor: Víctor García Carrera victorgarciacarrera@gmail.com
 	Descarga el contenido del buscador de google con un término
@@ -13,6 +12,8 @@ from random import *
 """ Ejemplo obtenido de: https://www.edureka.co/blog/web-scraping-with-python/ """
 
 from selenium import webdriver
+#from selenium.webdriver.common.keys import keys		#The Keys class provide keys in the keyboard like RETURN, F1, ALT etc.
+
 from bs4 import BeautifulSoup		#Libreria bs4 version ultima BeautifulSoup4
 import pandas as pd
 
@@ -26,7 +27,10 @@ from concurrent.futures import ProcessPoolExecutor
 POOLSIZE = 10
 
 
-""" ### FALTA HACER EN BACKGROUND (XVF?) !!!! ####
+""" ### FALTA HACER LISTA DE DRIVERS (meter @|FIREFOX|@) +
+	###		+ CALCULO DE RESULTADOS (estadisticas, valorar con desviacion respecto a la media...)
+	### 	+ INSPECCIONAR/MEDIR + DATOS como tiempo de respuesta, enlaces (expresiones regulares)
+	
 """
 
 ## Inicio TIME
@@ -36,14 +40,15 @@ def main():
 
 	global POOLSIZE
 
-	""" Establecemos el path al chromedriver"""
-	driver = webdriver.Chrome("/bin/chromedriver")
-	# IMP!!!! PODEMOS UTILIZAR OTROS BUSCADORES: webdriver.Firefox()...
-
 	""" LINEAS PARA DESHABILITAR EL CONTROL DE GOOGLE: "Chrome is being controlled by automated test software" """
-	chrome_options = webdriver.ChromeOptions(); 
+	chrome_options = webdriver.ChromeOptions();
+	chrome_options.add_argument('--headless');		# EJECUCION EN BACKGROUND
+
 	chrome_options.add_experimental_option("excludeSwitches", ['enable-automation', 'disable-infobars']);
-	driver = webdriver.Chrome(options=chrome_options);
+	
+	driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options,
+								service_args=['--verbose', '--log-path=/tmp/chromedriver.log']);
+
 	
 	""" Lista con el numero de resultados por termino de busqueda """
 	resultados = []
@@ -106,7 +111,7 @@ def main():
 		for res in arr:
 			resultados.append(res)
 
-	print("\n\nVIENEEE " +str(resultados))
+	print("\n\nResultados: " +str(resultados))
 
 	""" Escribimos en un fichero BUSQUEDA *.es: NUMERO DE RESULTADOS: 500"""
 	ahora = datetime.now()
@@ -133,14 +138,17 @@ def main():
 def buscar(terminos):
 
 	res = []
-	""" Establecemos el path al chromedriver"""
-	driver = webdriver.Chrome("/bin/chromedriver")
+
 	# IMP!!!! PODEMOS UTILIZAR OTROS BUSCADORES: webdriver.Firefox()...
 
 	""" LINEAS PARA DESHABILITAR EL CONTROL DE GOOGLE: "Chrome is being controlled by automated test software" """
-	chrome_options = webdriver.ChromeOptions(); 
+	chrome_options = webdriver.ChromeOptions();
+	chrome_options.add_argument('--headless');		# EJECUCION EN BACKGROUND
+
 	chrome_options.add_experimental_option("excludeSwitches", ['enable-automation', 'disable-infobars']);
-	driver = webdriver.Chrome(options=chrome_options);
+	
+	driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options,
+								service_args=['--verbose', '--log-path=/tmp/chromedriver.log']);
 
 
 	for termino in terminos:
@@ -149,7 +157,7 @@ def buscar(terminos):
 		print("\n" + link)
 
 		""" Establecemos un tiempo entre las búsquedas para evitar CAPTCHA de Google """
-		wait = random()*2
+		wait = random()
 		time.sleep(wait)
 
 		""" Abrimos la URL con la búsqueda """
@@ -171,7 +179,7 @@ def buscar(terminos):
 		iniIndex += 16
 		endIndex = resu.find("resultados")
 		num = resu[iniIndex:endIndex]
-		print(num)
+		#print(num)
 		res.append(str(num))
 
 	""" Cerramos la pestaña abierta """
