@@ -22,16 +22,15 @@ import time
 from datetime import datetime
 import numpy as np
 
-from concurrent.futures import ThreadPoolExecutor
+# INTENTAR ThreadPoolExecutor
+from concurrent.futures import ProcessPoolExecutor
 # Para ver si procesos o threads: https://dev.to/rhymes/how-to-make-python-code-concurrent-with-3-lines-of-code-2fpe
 
 POOLSIZE = 10
 
-
 """ ### FALTA HACER LISTA DE DRIVERS (meter @|FIREFOX|@) +
 	###		+ CALCULO DE RESULTADOS (estadisticas, valorar con desviacion respecto a la media...)
 	### 	+ INSPECCIONAR/MEDIR + DATOS como tiempo de respuesta, enlaces (expresiones regulares)
-	
 """
 
 ## Inicio TIME
@@ -46,7 +45,7 @@ def main():
 	chrome_options.add_argument('--headless');		# EJECUCION EN BACKGROUND
 
 	chrome_options.add_experimental_option("excludeSwitches", ['enable-automation', 'disable-infobars']);
-		
+	
 	driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options,
 								service_args=['--verbose', '--log-path=/tmp/chromedriver.log']);
 	
@@ -77,8 +76,8 @@ def main():
 	groups = init_len//POOLSIZE		# Agrupamos los términos para minimizar los lanzamientos del pool que son costosos
 
 	# EJEMPLO: len(busquedas)=40, POOLSIZE=10, groups=4
-	"""busquedas_groups = np.array_split(busquedas, groups)
-	print busquedas_groups"""
+	"""		busquedas_groups = np.array_split(busquedas, groups)
+	print busquedas_groups		"""
 
 	
 	# Recorremos la lista de búsquedas agrupando por terminos
@@ -100,7 +99,7 @@ def main():
 		"""
 
 	"""PARALELO!!!!"""
-	executor = ThreadPoolExecutor(POOLSIZE)
+	executor = ProcessPoolExecutor(POOLSIZE)
 
 	#timeout=None, chunksize=1000
 	resultados_groups = list(executor.map(buscar, busquedas_groups))
@@ -112,7 +111,7 @@ def main():
 		for res in arr:
 			resultados.append(res)
 
-	print("\n\nResultados: " +str(resultados))
+	print("\n\nResultados: " + str(resultados))
 
 	""" Escribimos en un fichero BUSQUEDA *.es: NUMERO DE RESULTADOS: 500"""
 	ahora = datetime.now()
@@ -184,7 +183,7 @@ def buscar(terminos):
 		res.append(str(num))
 
 	""" Cerramos la pestaña abierta """
-	#driver.close()
+	driver.close()
 
 	""" Devolvemos el número de resultados de buscar el termino """
 	return res

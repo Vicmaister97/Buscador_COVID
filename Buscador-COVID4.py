@@ -57,6 +57,10 @@ def main():
 	# Driver2 FIREFOX
 	firefox_options = webdriver.FirefoxOptions()
 	firefox_options.add_argument('--headless')
+	"""
+	firefoxOptions.setAcceptInsecureCerts(true);
+    firefoxOptions.setLogLevel(FirefoxDriverLogLevel.TRACE);
+	"""
 	driver2 = webdriver.Firefox(executable_path="/usr/bin/geckodriver", options=firefox_options)
 
 	# Aniadimos los drivers para realizar las busquedas
@@ -115,7 +119,11 @@ def main():
 	"""PARALELO!!!!"""
 	executor = ProcessPoolExecutor(POOLSIZE)
 
-	resultados_groups = list(executor.map(buscar, busquedas_groups))
+	try:
+		resultados_groups = list(executor.map(buscar, busquedas_groups))
+
+	except futures.process.BrokenProcessPool as e:		# Si falla alguna búsqueda
+        print('could not start new tasks: {}'.format(e))
 
 	#for driver in driver_list:
 		# Cierra todas las ventanas de búsqueda y finaliza correctamente la sesión WebDriver
@@ -169,6 +177,10 @@ def buscar(terminos):
 	# Driver2 FIREFOX
 	firefox_options = webdriver.FirefoxOptions()
 	firefox_options.add_argument('--headless')
+	"""
+	firefoxOptions.setAcceptInsecureCerts(true);
+    firefoxOptions.setLogLevel(FirefoxDriverLogLevel.TRACE);
+    """
 	driver2 = webdriver.Firefox(executable_path="/usr/bin/geckodriver", options=firefox_options)
 
 	# Aniadimos los drivers para realizar las busquedas
@@ -184,6 +196,21 @@ def buscar(terminos):
 			""" Establecemos un tiempo entre las búsquedas para evitar CAPTCHA de Google """
 			wait = random()
 			time.sleep(wait)
+
+			"""try:
+	        # always set a timeout when you connect to an external server
+	        connection = http.client.HTTPSConnection(link, timeout=2)
+
+	        connection.request("GET", "/")
+
+	        response = connection.getresponse()
+
+	        print(response.read())
+   		except socket.timeout:
+	        # in a real world scenario you would probably do stuff if the
+	        # socket goes into timeout
+	        print("\n\n\tSOCKET")
+	        pass"""
 
 			""" Abrimos la URL con la búsqueda """
 			driver.get(link)
