@@ -69,7 +69,7 @@ def main():
 
 	#@#@#@@#@@#@#@ 		IMP!!! LEER DE FICHERO LAS BUSQUEDAS		#@#@#@@#@@#@#@
 	""" Lista(array numpy) con las búsquedas a realizar en Google """
-	busquedas = np.array( ["*.es", "coronavirus *.es", "crisis * coronavirus *.es", "calma * coronavirus *.es", "esperanza * coronavirus *.es" ,  
+	"""busquedas = np.array( ["*.es", "coronavirus *.es", "crisis * coronavirus *.es", "calma * coronavirus *.es", "esperanza * coronavirus *.es" ,  
 					"pánico * coronavirus *.es", "miedo * coronavirus *.es", "ansiedad * coronavirus *.es", "terror * coronavirus *.es",       
 					"inseguridad * coronavirus*.es", "enfado * coronavirus *.es", "rabia * coronavirus *.es", "ira * coronavirus *.es" , 
 					"alegría * coronavirus *.es", "tristeza * coronavirus *.es" , "sorpresa * coronavirus *.es", "alivio * coronavirus *.es",
@@ -80,7 +80,9 @@ def main():
 					"aislamiento * coronavirus *.es", "memes * coronavirus *.es", "bromas * coronavirus *.es", "chistes * coronavirus *.es", 
 					"alarma * coronavirus *.es", "gratitud * coronavirus *.es", "aplausos * coronavirus *.es", "agradecimiento * coronavirus *.es",
 					"vacuna * coronavirus *.es", "mortalidad * coronavirus *.es", "muerte * coronavirus *.es"] )
-	
+	"""
+	busquedas = np.array( ["*.es", "coronavirus *.es", "crisis * coronavirus *.es", "calma * coronavirus *.es", "esperanza * coronavirus *.es" ,  
+					"pánico * coronavirus *.es"] )
 
 	# REORGANIZAMOS LA LISTA DE BÚSQUEDA PARA AGRUPAR LOS TÉRMINOS EN FUNCION DE POOLSIZE!!!
 	init_len = len(busquedas)
@@ -229,7 +231,7 @@ def buscar1(terminos):
 		num = resu[iniIndex:endIndex]
 
 		#print(num)
-		res_driver.append(str(num))
+		res.append(str(num))
 
 	""" Cerramos las pestaña abierta """
 	driver.close()
@@ -273,7 +275,8 @@ def buscar2(terminos):
 		## NOTA: Podemos mejorar el rendimiento con el parseador lxml, instalado en pip3
 		soup = BeautifulSoup(content, "lxml")
 		# Busca el tag span que empieza con yui_3... donde esta el numero de resultados
-		RESULT = soup.find_all("span", id=re.compile(r"^yui_3_10_0_1"))
+		#RESULT = soup.find_all("span", id=re.compile(r"^yui_3_10_0_1"))
+		RESULT = soup.find_all("span")
 
 		""" Obtenemos del texto el número de resultados """
 		resu = str(RESULT)
@@ -287,7 +290,7 @@ def buscar2(terminos):
 		num = resu[iniIndex:endIndex]
 
 		print(num)
-		res_driver.append(str(num))
+		res.append(str(num))
 
 	""" Cerramos las pestaña abierta """
 	driver.close()
