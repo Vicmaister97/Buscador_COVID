@@ -22,40 +22,51 @@ import time
 from datetime import datetime
 import numpy as np
 
-# INTENTAR ThreadPoolExecutor
 from concurrent.futures import ProcessPoolExecutor
-# Para ver si procesos o threads: https://dev.to/rhymes/how-to-make-python-code-concurrent-with-3-lines-of-code-2fpe
 
 POOLSIZE = 10
+#@#@#@@ VER OTROS __MOTORES__ de BUSQUEDA (no navegadores, que solo es para visualizacion y navegar)
+### HACER LOS DRIVERS COMO UNA CLASE (con sus atributos y metodos) para utilizarla en ambos lados!!!
 
 """ ### FALTA HACER LISTA DE DRIVERS (meter @|FIREFOX|@) +
 	###		+ CALCULO DE RESULTADOS (estadisticas, valorar con desviacion respecto a la media...)
 	### 	+ INSPECCIONAR/MEDIR + DATOS como tiempo de respuesta, enlaces (expresiones regulares)
+	
 """
 
+#@#@#@#@#@ PONER MEJOR EL START TIME (despues de inicializar listas) y 2 para los 2 drivers #@#@#@#@#@
 ## Inicio TIME
 start_time = time.time()
 
 def main():
 
-	global POOLSIZE	
+	# Declaramos la var global POOLSIZE que indica el tamanio del pool de procesos
+	global POOLSIZE
+
+	# Driver1 CHROME
+	chrome_options = webdriver.ChromeOptions();
+	chrome_options.add_argument('--headless');		# EJECUCION EN BACKGROUND, invisible
 
 	""" LINEAS PARA DESHABILITAR EL CONTROL DE GOOGLE: "Chrome is being controlled by automated test software" """
-	chrome_options = webdriver.ChromeOptions();
-	chrome_options.add_argument('--headless');		# EJECUCION EN BACKGROUND
-
 	chrome_options.add_experimental_option("excludeSwitches", ['enable-automation', 'disable-infobars']);
 	
 	driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options,
 								service_args=['--verbose', '--log-path=/tmp/chromedriver.log']);
 	
+	
+	""" Variables de busquedas y resultados """	
+	busquedas_groups = []		#  Lista con las busquedas agrupadas
+	resultados1_groups = []		#  Lista con los resultados agrupados con el 1er buscador GOOGLE
+	resultados2_groups = []		#  Lista con los resultados agrupados con el 2do buscador YAHOO
 
-	""" Lista con el numero de resultados por termino de busqueda """
-	resultados = []
-	resultados_groups = []
-	busquedas_groups = []
+	resultados_list = []		#  Lista con el numero de resultados por driver de los terminos de busqueda
+	resultados = []			
 
-	"""busquedas = ["*.es"]"""
+	# Listas por cada BUSCADOR de los resultados obtenidos
+	resultados1 = []		# Resultados de Google
+	resultados2 = []		# Resultados de Yahoo	
+
+	#@#@#@@#@@#@#@ 		IMP!!! LEER DE FICHERO LAS BUSQUEDAS		#@#@#@@#@@#@#@
 	""" Lista(array numpy) con las búsquedas a realizar en Google """
 	busquedas = np.array( ["*.es", "coronavirus *.es", "crisis * coronavirus *.es", "calma * coronavirus *.es", "esperanza * coronavirus *.es" ,  
 					"pánico * coronavirus *.es", "miedo * coronavirus *.es", "ansiedad * coronavirus *.es", "terror * coronavirus *.es",       
@@ -72,12 +83,12 @@ def main():
 
 	# REORGANIZAMOS LA LISTA DE BÚSQUEDA PARA AGRUPAR LOS TÉRMINOS EN FUNCION DE POOLSIZE!!!
 	init_len = len(busquedas)
-	print(init_len)
+	print("NUMERO BUSQUEDAS: " + str(init_len))
 	groups = ceil(init_len/POOLSIZE)		# Agrupamos los términos para minimizar los lanzamientos del pool que son costosos
 
-	# EJEMPLO: len(busquedas)=40, POOLSIZE=10, groups=4
-	"""		busquedas_groups = np.array_split(busquedas, groups)
-	print busquedas_groups		"""
+	# EJEMPLO: len(busquedas)=44, POOLSIZE=10, groups=5, para mantener que haya <=10 grupos de busquedas
+	"""busquedas_groups = np.array_split(busquedas, groups)
+	print busquedas_groups"""
 
 	
 	# Recorremos la lista de búsquedas agrupando por terminos
@@ -89,41 +100,76 @@ def main():
 			busquedas_groups.append(terms)
 
 	# Obtemos el array de búsquedas con subarrays agrupados para mejorar la búsqueda
+	print("\n\n")
 	print(busquedas_groups)
-	print(str(time.time()-start_time))
+	print(len(busquedas_groups))
+	print("\n\nBREAK\n\n")
 	
 	"""SECUENCIAL!!"""
 	""" Seleccionamos uno a uno los términos a buscar para obtener su número de resultados """
 	"""for termino in busquedas:
 		res = buscar(termino)
+
 		resultados.append(str(res))
 		"""
 
 	"""PARALELO!!!!"""
 	executor = ProcessPoolExecutor(POOLSIZE)
 
-	#timeout=None, chunksize=1000
-	resultados_groups = list(executor.map(buscar, busquedas_groups))
+	try:
+		resultados1_groups = list(executor.map(buscar1, busquedas_groups))
 
-	# Cierra todas las ventanas de búsqueda y finaliza correctamente la sesión WebDriver
+	except concurrent.futures.process.BrokenProcessPool as e:		# Si falla alguna búsqueda
+		print('could not start new tasks: {}'.format(e))
+
+	print("\n\nCAMBIO DE BUSCADOR\n\n")
+
+	try:
+		resultados2_groups = list(executor.map(buscar2, busquedas_groups))
+
+	except concurrent.futures.process.BrokenProcessPool as e:		# Si falla alguna búsqueda
+		print('could not start new tasks: {}'.format(e))
+
+	"""for driver in driver_list:
+		# Cierra todas las ventanas de búsqueda y finaliza correctamente la sesión WebDriver
+	"""
 	driver.quit()
 
-	for arr in resultados_groups:
+	# Quitamos los grupos de resultados
+	for arr in resultados1_groups:
 		for res in arr:
-			resultados.append(res)
+			resultados1.append(res)	
 
-	print("\n\nResultados: " + str(resultados))
+	for arr in resultados2_groups:
+		for res in arr:
+			resultados2.append(res)	
+
+	print(resultados1)
+	print("\n\nBREAK2\n\n")
+	print(resultados2)
+
+	"""
+	resultadosNotOrdered.append(resultados1)
+	resultadosNotOrdered.append(resultados2)
+	
+	for driver_results in resultadosNotOrdered:
+		for arr in driver_results
+			for res in arr:
+				file = int(driver_results[0])
+				resultados[file].append(res)
+
+	print("\n\nResultados: " +str(resultados)) """
 
 	""" Escribimos en un fichero BUSQUEDA *.es: NUMERO DE RESULTADOS: 500"""
-	ahora = datetime.now()
-	nombre = str(ahora.day) + "-" + str(ahora.month) + "-" + str(ahora.year) + ".txt"
+	#	ahora = datetime.now()
+	#	nombre = str(ahora.day) + "-" + str(ahora.month) + "-" + str(ahora.year) + ".txt"
 	"""if (ahora.hour < 14 and ahora.hour > 2):
 		nombre += " Morning" + ".txt"
 	else:
 		nombre += " Noche" + ".txt"
 	"""
-	f = open(nombre, "w+")
-	f.write("\tBuscador v3.0 \t Archivo con el número de resultados obtenidos por término de búsqueda en GOOGLE\t***")
+	"""	f = open(nombre, "w+")
+	f.write("***\tBuscador v4.0 \t Archivo con el número de resultados obtenidos por término de búsqueda en GOOGLE\t***")
 	f.write("\n***\tFECHA: " + str(ahora) + "\t***\n\n")
 	f.write("TÉRMINO DE BÚSQUEDA\t\tNÚMERO APROXIMADO DE RESULTADOS\n")
 
@@ -133,24 +179,23 @@ def main():
 
 	f.write("\n\nTIEMPO DE BUSQUEDA: " + str(time.time()-start_time))
 
-	f.close()
+	f.close()"""
 
-
-def buscar(terminos):
-
-	#global driver
+# BUSQUEDA EN GOOGLE
+def buscar1(terminos):
 
 	res = []
 
-	""" LINEAS PARA DESHABILITAR EL CONTROL DE GOOGLE: "Chrome is being controlled by automated test software" """
+	# Driver1 CHROME
 	chrome_options = webdriver.ChromeOptions();
-	chrome_options.add_argument('--headless');		# EJECUCION EN BACKGROUND
+	chrome_options.add_argument('--headless');		# EJECUCION EN BACKGROUND, invisible
 
+	""" LINEAS PARA DESHABILITAR EL CONTROL DE GOOGLE: "Chrome is being controlled by automated test software" """
 	chrome_options.add_experimental_option("excludeSwitches", ['enable-automation', 'disable-infobars']);
-		
+	
 	driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options,
 								service_args=['--verbose', '--log-path=/tmp/chromedriver.log']);
-	
+
 
 	for termino in terminos:
 		""" Creamos el link de búsqueda con el término correspondiente """
@@ -167,7 +212,7 @@ def buscar(terminos):
 
 		""" Buscamos por tags, en nuestro caso, queremos buscar el tag con <div id="result-stats"> """
 		content = driver.page_source
-		soup = BeautifulSoup(content, "lxml")
+		soup = BeautifulSoup(content, "html.parser")
 		RESULT = soup.find(id ="result-stats")
 
 		""" Obtenemos del texto el número de resultados """
@@ -180,13 +225,72 @@ def buscar(terminos):
 		iniIndex += 16
 		endIndex = resu.find("resultados")
 		num = resu[iniIndex:endIndex]
-		#print(num)
-		res.append(str(num))
 
-	""" Cerramos la pestaña abierta """
+		#print(num)
+		res_driver.append(str(num))
+
+	""" Cerramos las pestaña abierta """
 	driver.close()
 
-	""" Devolvemos el número de resultados de buscar el termino """
+	""" Devolvemos la lista de resultados"""
+	return res
+
+
+# BUSQUEDA EN YAHOO
+def buscar2(terminos):
+
+	res = []
+
+	# Driver1 CHROME
+	chrome_options = webdriver.ChromeOptions();
+	chrome_options.add_argument('--headless');		# EJECUCION EN BACKGROUND, invisible
+
+	""" LINEAS PARA DESHABILITAR EL CONTROL DE GOOGLE: "Chrome is being controlled by automated test software" """
+	chrome_options.add_experimental_option("excludeSwitches", ['enable-automation', 'disable-infobars']);
+	
+	driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options,
+								service_args=['--verbose', '--log-path=/tmp/chromedriver.log']);
+
+
+	for termino in terminos:
+		""" Creamos el link de búsqueda con el término correspondiente """
+		link = "https://es.search.yahoo.com/search?p=" + termino
+		print("\n" + link)
+
+		""" Establecemos un tiempo entre las búsquedas para evitar CAPTCHA de Google """
+		wait = random()
+		time.sleep(wait)
+
+		""" Abrimos la URL con la búsqueda """
+		driver.get(link)
+
+
+		""" Buscamos por tags, en nuestro caso, queremos buscar el tag con <div id="result-stats"> """
+		content = driver.page_source
+		#soup = BeautifulSoup(content, "html.parser")
+		## NOTA: Podemos mejorar el rendimiento con el parseador lxml, instalado en pip3
+		soup = BeautifulSoup(content, "lxml")
+		# Busca el tag span que empieza con yui_3... donde esta el numero de resultados
+		RESULT = soup.find_all("span", id=re.compile(r"^yui_3_10_0_1"))
+
+		""" Obtenemos del texto el número de resultados """
+		resu = str(RESULT)
+		print("\nRESULT: " + resu)
+
+		""" buscamos el numero de resultados por la cadena de Aproximadamente """
+		iniIndex = resu.find("Aproximadamente")
+		""" Situamos el indice despues de Aproximadamente, donde va el numero """
+		iniIndex += 16
+		endIndex = resu.find("resultados")
+		num = resu[iniIndex:endIndex]
+
+		#print(num)
+		res_driver.append(str(num))
+
+	""" Cerramos las pestaña abierta """
+	driver.close()
+
+	""" Devolvemos la lista de resultados"""
 	return res
 
 

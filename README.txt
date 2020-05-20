@@ -4,7 +4,11 @@ COMPLETAR DESCRIPCIÓN Y EXPLICACIÓN DEL PROGRAMA
 
 -.-.-.-.-.- FUENTES -.-.-.-.-.-
 
+**** FUNCIONAMIENTO BEAUTIFULSOUP: https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+
 ** """ Ejemplo obtenido de: https://www.edureka.co/blog/web-scraping-with-python/ """
+
+*** Buscadores en BACKGROUND: https://www.guru99.com/selenium-with-htmlunit-driver-phantomjs.html 
 
 
 ** RUN IN BACKGROUND Selenium Chrome~Firefox. https://blog.testproject.io/2018/02/20/chrome-headless-selenium-python-linux-servers/
