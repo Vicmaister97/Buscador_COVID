@@ -121,14 +121,14 @@ def main():
 
 	""" Escribimos en un fichero BUSQUEDA *.es: NUMERO DE RESULTADOS: 500"""
 	ahora = datetime.now()
-	nombre = str(ahora.day) + "-" + str(ahora.month) + "-" + str(ahora.year) + ".txt"
+	nombre = str(ahora.day) + "-" + str(ahora.month) + "-" + str(ahora.year) + "_v3" + ".txt"
 	"""if (ahora.hour < 14 and ahora.hour > 2):
 		nombre += " Morning" + ".txt"
 	else:
 		nombre += " Noche" + ".txt"
 	"""
 	f = open(nombre, "w+")
-	f.write("\tBuscador v3.0 \t Archivo con el número de resultados obtenidos por término de búsqueda en GOOGLE\t***")
+	f.write("***\tBuscador v3.0 \t Archivo con el número de resultados obtenidos por término de búsqueda en GOOGLE\t***")
 	f.write("\n***\tFECHA: " + str(ahora) + "\t***\n\n")
 	f.write("TÉRMINO DE BÚSQUEDA\t\tNÚMERO APROXIMADO DE RESULTADOS\n")
 
