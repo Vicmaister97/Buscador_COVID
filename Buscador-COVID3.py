@@ -33,9 +33,6 @@ POOLSIZE = 10
 	### 	+ INSPECCIONAR/MEDIR + DATOS como tiempo de respuesta, enlaces (expresiones regulares)
 """
 
-## Inicio TIME
-start_time = time.time()
-
 def main():
 
 	global POOLSIZE	
@@ -90,7 +87,6 @@ def main():
 
 	# Obtemos el array de búsquedas con subarrays agrupados para mejorar la búsqueda
 	print(busquedas_groups)
-	print(str(time.time()-start_time))
 	
 	"""SECUENCIAL!!"""
 	""" Seleccionamos uno a uno los términos a buscar para obtener su número de resultados """
@@ -100,10 +96,19 @@ def main():
 		"""
 
 	"""PARALELO!!!!"""
+
+	#### Finalizada INICIALIZACION, pasamos a busqueda
+
 	executor = ProcessPoolExecutor(POOLSIZE)
+
+	## Inicio TIME
+	start_time = time.time()
 
 	#timeout=None, chunksize=1000
 	resultados_groups = list(executor.map(buscar, busquedas_groups))
+
+	## Tiempo de busqueda
+	busqueda_time = time.time() - start_time
 
 	# Cierra todas las ventanas de búsqueda y finaliza correctamente la sesión WebDriver
 	driver.quit()
@@ -131,7 +136,7 @@ def main():
 		linea = "\n" + busquedas[j] + "\t\t" + str(resultados[j])
 		f.write(linea)
 
-	f.write("\n\nTIEMPO DE BUSQUEDA: " + str(time.time()-start_time))
+	f.write("\n\nTIEMPO DE BUSQUEDA: " + str(busqueda_time))
 
 	f.close()
 

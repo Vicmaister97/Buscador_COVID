@@ -59,12 +59,13 @@ def main():
 	resultados1_groups = []		#  Lista con los resultados agrupados con el 1er buscador GOOGLE
 	resultados2_groups = []		#  Lista con los resultados agrupados con el 2do buscador YAHOO
 
-	resultados_list = []		#  Lista con el numero de resultados por driver de los terminos de busqueda
-	resultados = []			
-
 	# Listas por cada BUSCADOR de los resultados obtenidos
 	resultados1 = []		# Resultados de Google
-	resultados2 = []		# Resultados de Yahoo	
+	resultados2 = []		# Resultados de Yahoo
+
+	#resultados_list = []		#  Lista con el numero de resultados por driver de los terminos de busqueda
+	#resultados = []			
+	
 
 	#@#@#@@#@@#@#@ 		IMP!!! LEER DE FICHERO LAS BUSQUEDAS		#@#@#@@#@@#@#@
 	""" Lista(array numpy) con las búsquedas a realizar en Google """

@@ -25,6 +25,10 @@ import numpy as np
 from concurrent.futures import ProcessPoolExecutor
 
 POOLSIZE = 10
+tiempos1 = []
+tiempos2 = []
+
+
 #@#@#@@ VER OTROS __MOTORES__ de BUSQUEDA (no navegadores, que solo es para visualizacion y navegar)
 ### HACER LOS DRIVERS COMO UNA CLASE (con sus atributos y metodos) para utilizarla en ambos lados!!!
 
@@ -35,13 +39,13 @@ POOLSIZE = 10
 """
 
 #@#@#@#@#@ PONER MEJOR EL START TIME (despues de inicializar listas) y 2 para los 2 drivers #@#@#@#@#@
-## Inicio TIME
-start_time = time.time()
 
 def main():
 
 	# Declaramos la var global POOLSIZE que indica el tamanio del pool de procesos
 	global POOLSIZE
+	global tiempos1
+	global tiempos2
 
 	# Lista donde guardamos los drivers que utilizamos para las busquedas
 	driver_list = []
@@ -72,8 +76,16 @@ def main():
 	""" Variables de busquedas y resultados """	
 	busquedas_groups = []		#  Lista con las busquedas agrupadas
 	resultados_groups = []		#  Lista con los resultados agrupados
-	resultados_list = []		#  Lista con el numero de resultados por driver de los terminos de busqueda
-	resultados = []				
+
+	# Listas por cada BUSCADOR de los resultados obtenidos
+	resultados1 = []		# Resultados de Google
+	resultados2 = []		# Resultados de Yahoo
+
+	resultados1_orden = []		# Lista con los resultados ordenados de GOOGLE
+	resultados2_orden = []		# Lista con los resultados ordenados de GOOGLE
+
+	#resultados_list = []		#  Lista con el numero de resultados por driver de los terminos de busqueda
+	#resultados = []				
 
 	#@#@#@@#@@#@#@ 		IMP!!! LEER DE FICHERO LAS BUSQUEDAS		#@#@#@@#@@#@#@
 	""" Lista(array numpy) con las búsquedas a realizar en Google """
@@ -135,8 +147,7 @@ def main():
 		# Cierra todas las ventanas de búsqueda y finaliza correctamente la sesión WebDriver
 		driver.quit()
 
-	resultados1 = []
-	resultados2 = []
+
 	# Recorremos la lista de resultados agrupando por drivers
 	for pos in range(0,len(resultados_groups)):
 		if pos%2==0:	# Pertenece al primer driver
@@ -150,41 +161,62 @@ def main():
 	print("\n\nBREAK2\n\n")
 	print(resultados2)
 
-	"""
-	resultadosNotOrdered.append(resultados1)
-	resultadosNotOrdered.append(resultados2)
-	
-	for driver_results in resultadosNotOrdered:
-		for arr in driver_results
-			for res in arr:
-				file = int(driver_results[0])
-				resultados[file].append(res)
+	# Quitamos los grupos de resultados
+	for arr in resultados1:
+		for res in arr:
+			resultados1_orden.append(res)	
 
-	print("\n\nResultados: " +str(resultados)) """
+	for arr in resultados2_groups:
+		for res in arr:
+			resultados2_orden.append(res)	
+
+	print(resultados1_orden)
+	print("\n\nBREAK2\n\n")
+	print(resultados2_orden)
+
+	tiempo1_total = 0
+	for times in tiempos1:
+		tiempo1_total+=times
+
+	tiempo2_total = 0
+	for times in tiempos2:
+		tiempo2_total+=times
 
 	""" Escribimos en un fichero BUSQUEDA *.es: NUMERO DE RESULTADOS: 500"""
-	#	ahora = datetime.now()
-	#	nombre = str(ahora.day) + "-" + str(ahora.month) + "-" + str(ahora.year) + ".txt"
+	ahora = datetime.now()
+	nombre = str(ahora.day) + "-" + str(ahora.month) + "-" + str(ahora.year) + ".txt"
 	"""if (ahora.hour < 14 and ahora.hour > 2):
 		nombre += " Morning" + ".txt"
 	else:
 		nombre += " Noche" + ".txt"
 	"""
-	"""	f = open(nombre, "w+")
-	f.write("***\tBuscador v4.0 \t Archivo con el número de resultados obtenidos por término de búsqueda en GOOGLE\t***")
-	f.write("\n***\tFECHA: " + str(ahora) + "\t***\n\n")
-	f.write("TÉRMINO DE BÚSQUEDA\t\tNÚMERO APROXIMADO DE RESULTADOS\n")
+	buscador = "GOOGLE"
+	res = resultados1_orden
+	tiempoTOT = tiempo1_total
 
-	for j in range(0, len(resultados)):
-		linea = "\n" + busquedas[j] + "\t\t" + str(resultados[j])
-		f.write(linea)
+	for i in range(2):
+		if i==1:
+			buscador = "FIREFOX"
+			res = resultados2_orden
+			tiempoTOT = tiempo2_total
 
-	f.write("\n\nTIEMPO DE BUSQUEDA: " + str(time.time()-start_time))
+		f = open(nombre, "w+")
+		f.write("***\tBuscador v4.0 \t Archivo con el número de resultados obtenidos por término de búsqueda en " + buscador + "\t***")
+		f.write("\n***\tFECHA: " + str(ahora) + "\t***\n\n")
+		f.write("TÉRMINO DE BÚSQUEDA\t\tNÚMERO APROXIMADO DE RESULTADOS\n")
 
-	f.close()"""
+		for j in range(0, len(res)):
+			linea = "\n" + busquedas[j] + "\t\t" + str(res[j])
+			f.write(linea)
+
+		f.write("\n\nTIEMPO DE BUSQUEDA: " + str(tiempoTOT))
+		f.close()
 
 
 def buscar(terminos):
+
+	global tiempos1
+	global tiempos2
 
 	res = []
 	res_driver = []
@@ -223,6 +255,10 @@ def buscar(terminos):
 			res.append(res_driver)		# Aniadimos en la lista de resultados finales[res_driver1, res_driver2] 
 										#	los resultados del driver1
 			res_driver = []
+			tiempos1.append(busqueda_time)
+
+		## Inicio TIME
+		start_time = time.time()
 
 		for termino in terminos:
 			""" Creamos el link de búsqueda con el término correspondiente """
@@ -256,9 +292,13 @@ def buscar(terminos):
 			#print(num)
 			res_driver.append(str(num))
 
+		## busqueda TIME
+		busqueda_time = time.time()-start_time
 		i += 1		# Para llevar la cuenta del driver
 
+	# Terminamos de aniadir la info del driver 2
 	res.append(res_driver)
+	tiempos2.append(busqueda_time)
 
 	""" Cerramos las pestaña abierta """
 	for driver in driver_list:
