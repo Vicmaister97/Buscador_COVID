@@ -117,6 +117,7 @@ def main():
 	"""PARALELO!!!!"""
 	executor = ProcessPoolExecutor(POOLSIZE)
 
+	# Buscar1 para buscar en GOOGLE
 	try:
 		resultados1_groups = list(executor.map(buscar1, busquedas_groups))
 
@@ -125,6 +126,7 @@ def main():
 
 	print("\n\nCAMBIO DE BUSCADOR\n\n")
 
+	# Buscar2 para buscar en YAHOO
 	try:
 		resultados2_groups = list(executor.map(buscar2, busquedas_groups))
 
@@ -197,7 +199,6 @@ def buscar1(terminos):
 	driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options,
 								service_args=['--verbose', '--log-path=/tmp/chromedriver.log']);
 
-
 	for termino in terminos:
 		""" Creamos el link de búsqueda con el término correspondiente """
 		link = "https://www.google.com/search?q=" + termino
@@ -213,7 +214,7 @@ def buscar1(terminos):
 
 		""" Buscamos por tags, en nuestro caso, queremos buscar el tag con <div id="result-stats"> """
 		content = driver.page_source
-		soup = BeautifulSoup(content, "html.parser")
+		soup = BeautifulSoup(content, "lxml")
 		RESULT = soup.find(id ="result-stats")
 
 		""" Obtenemos del texto el número de resultados """
@@ -278,14 +279,14 @@ def buscar2(terminos):
 		resu = str(RESULT)
 		print("\nRESULT: " + resu)
 
-		""" buscamos el numero de resultados por la cadena de Aproximadamente """
-		iniIndex = resu.find("Aproximadamente")
-		""" Situamos el indice despues de Aproximadamente, donde va el numero """
-		iniIndex += 16
-		endIndex = resu.find("resultados")
+		""" buscamos el numero de resultados por la cadena de resultados (<...> X resultados)"""
+		iniIndex = resu.find(">")		# Encuentra el primer cierre del tag que nos deja justo antes de X
+		iniIndex += 1
+		endIndex = resu.find("resultados")		# El final esta en el inicio de resultados
+		endIndex -= 1							# Quitamos el espacio
 		num = resu[iniIndex:endIndex]
 
-		#print(num)
+		print(num)
 		res_driver.append(str(num))
 
 	""" Cerramos las pestaña abierta """
