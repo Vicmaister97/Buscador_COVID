@@ -23,7 +23,7 @@ from datetime import datetime
 def main():
 
 	""" Establecemos el path al chromedriver"""
-	driver = webdriver.Chrome("/bin/chromedriver")
+	driver = webdriver.Chrome("/usr/bin/chromedriver")
 
 	""" LINEAS PARA DESHABILITAR EL CONTROL DE GOOGLE: "Chrome is being controlled by automated test software" """
 	chrome_options = webdriver.ChromeOptions(); 

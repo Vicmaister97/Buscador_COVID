@@ -149,8 +149,6 @@ def main():
 
 def buscar(terminos):
 
-	#global driver
-
 	res = []
 
 	""" LINEAS PARA DESHABILITAR EL CONTROL DE GOOGLE: "Chrome is being controlled by automated test software" """

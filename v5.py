@@ -21,6 +21,7 @@ import string
 import time
 from datetime import datetime
 import numpy as np
+import re
 
 from concurrent.futures import ProcessPoolExecutor
 
@@ -35,8 +36,6 @@ POOLSIZE = 10
 """
 
 #@#@#@#@#@ PONER MEJOR EL START TIME (despues de inicializar listas) y 2 para los 2 drivers #@#@#@#@#@
-## Inicio TIME
-start_time = time.time()
 
 def main():
 
@@ -69,7 +68,7 @@ def main():
 
 	#@#@#@@#@@#@#@ 		IMP!!! LEER DE FICHERO LAS BUSQUEDAS		#@#@#@@#@@#@#@
 	""" Lista(array numpy) con las búsquedas a realizar en Google """
-	"""busquedas = np.array( ["*.es", "coronavirus *.es", "crisis * coronavirus *.es", "calma * coronavirus *.es", "esperanza * coronavirus *.es" ,  
+	busquedas = np.array( ["*.es", "coronavirus *.es", "crisis * coronavirus *.es", "calma * coronavirus *.es", "esperanza * coronavirus *.es" ,  
 					"pánico * coronavirus *.es", "miedo * coronavirus *.es", "ansiedad * coronavirus *.es", "terror * coronavirus *.es",       
 					"inseguridad * coronavirus*.es", "enfado * coronavirus *.es", "rabia * coronavirus *.es", "ira * coronavirus *.es" , 
 					"alegría * coronavirus *.es", "tristeza * coronavirus *.es" , "sorpresa * coronavirus *.es", "alivio * coronavirus *.es",
@@ -80,9 +79,7 @@ def main():
 					"aislamiento * coronavirus *.es", "memes * coronavirus *.es", "bromas * coronavirus *.es", "chistes * coronavirus *.es", 
 					"alarma * coronavirus *.es", "gratitud * coronavirus *.es", "aplausos * coronavirus *.es", "agradecimiento * coronavirus *.es",
 					"vacuna * coronavirus *.es", "mortalidad * coronavirus *.es", "muerte * coronavirus *.es"] )
-	"""
-	busquedas = np.array( ["*.es", "coronavirus *.es", "crisis * coronavirus *.es", "calma * coronavirus *.es", "esperanza * coronavirus *.es" ,  
-					"pánico * coronavirus *.es"] )
+	
 
 	# REORGANIZAMOS LA LISTA DE BÚSQUEDA PARA AGRUPAR LOS TÉRMINOS EN FUNCION DE POOLSIZE!!!
 	init_len = len(busquedas)
@@ -119,21 +116,32 @@ def main():
 	"""PARALELO!!!!"""
 	executor = ProcessPoolExecutor(POOLSIZE)
 
+	## Inicio TIME1
+	start_time1 = time.time()
+
 	# Buscar1 para buscar en GOOGLE
 	try:
 		resultados1_groups = list(executor.map(buscar1, busquedas_groups))
 
 	except concurrent.futures.process.BrokenProcessPool as e:		# Si falla alguna búsqueda
 		print('could not start new tasks: {}'.format(e))
+	
+	## Tiempo de busqueda1
+	busqueda_time1 = time.time() - start_time1
 
 	print("\n\nCAMBIO DE BUSCADOR\n\n")
 
+	## Inicio TIME2
+	start_time2 = time.time()
 	# Buscar2 para buscar en YAHOO
 	try:
 		resultados2_groups = list(executor.map(buscar2, busquedas_groups))
 
 	except concurrent.futures.process.BrokenProcessPool as e:		# Si falla alguna búsqueda
 		print('could not start new tasks: {}'.format(e))
+
+	## Tiempo de busqueda1
+	busqueda_time2 = time.time() - start_time2
 
 	"""for driver in driver_list:
 		# Cierra todas las ventanas de búsqueda y finaliza correctamente la sesión WebDriver
@@ -153,38 +161,33 @@ def main():
 	print("\n\nBREAK2\n\n")
 	print(resultados2)
 
-	"""
-	resultadosNotOrdered.append(resultados1)
-	resultadosNotOrdered.append(resultados2)
 	
-	for driver_results in resultadosNotOrdered:
-		for arr in driver_results
-			for res in arr:
-				file = int(driver_results[0])
-				resultados[file].append(res)
-
-	print("\n\nResultados: " +str(resultados)) """
-
 	""" Escribimos en un fichero BUSQUEDA *.es: NUMERO DE RESULTADOS: 500"""
-	#	ahora = datetime.now()
-	#	nombre = str(ahora.day) + "-" + str(ahora.month) + "-" + str(ahora.year) + ".txt"
-	"""if (ahora.hour < 14 and ahora.hour > 2):
-		nombre += " Morning" + ".txt"
-	else:
-		nombre += " Noche" + ".txt"
-	"""
-	"""	f = open(nombre, "w+")
-	f.write("***\tBuscador v4.0 \t Archivo con el número de resultados obtenidos por término de búsqueda en GOOGLE\t***")
-	f.write("\n***\tFECHA: " + str(ahora) + "\t***\n\n")
-	f.write("TÉRMINO DE BÚSQUEDA\t\tNÚMERO APROXIMADO DE RESULTADOS\n")
+	ahora = datetime.now()
+	nombre = str(ahora.day) + "-" + str(ahora.month) + "-" + str(ahora.year) + "_v5_" + "GOOGLE" + ".txt"
+	
+	buscador = "GOOGLE"
+	res = resultados1
+	tiempoTOT = busqueda_time1
 
-	for j in range(0, len(resultados)):
-		linea = "\n" + busquedas[j] + "\t\t" + str(resultados[j])
-		f.write(linea)
+	for i in range(2):
+		if i==1:
+			buscador = "YAHOO"
+			res = resultados2
+			tiempoTOT = busqueda_time2
+			nombre = str(ahora.day) + "-" + str(ahora.month) + "-" + str(ahora.year) + "_v5_" + "YAHOO" + ".txt"
 
-	f.write("\n\nTIEMPO DE BUSQUEDA: " + str(time.time()-start_time))
+		f = open(nombre, "w+")
+		f.write("***\tBuscador v5.0 \t Archivo con el número de resultados obtenidos por término de búsqueda en " + buscador + "\t***")
+		f.write("\n***\tFECHA: " + str(ahora) + "\t***\n\n")
+		f.write("TÉRMINO DE BÚSQUEDA\t\tNÚMERO APROXIMADO DE RESULTADOS\n")
 
-	f.close()"""
+		for j in range(0, len(res)):
+			linea = "\n" + busquedas[j] + "\t\t" + str(res[j])
+			f.write(linea)
+
+		f.write("\n\nTIEMPO DE BUSQUEDA(secuencial): " + str(tiempoTOT))
+		f.close()
 
 # BUSQUEDA EN GOOGLE
 def buscar1(terminos):
@@ -207,7 +210,7 @@ def buscar1(terminos):
 		print("\n" + link)
 
 		""" Establecemos un tiempo entre las búsquedas para evitar CAPTCHA de Google """
-		wait = random()
+		wait = random()*2
 		time.sleep(wait)
 
 		""" Abrimos la URL con la búsqueda """
@@ -240,22 +243,24 @@ def buscar1(terminos):
 	return res
 
 
-# BUSQUEDA EN YAHOO
+# BUSQUEDA EN YAHOO, FALTA QUE SEA EL DOMINIO "EN ESPAÑOL"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# 						+ QUITAR ASTERISCOS Y *.es
 def buscar2(terminos):
-
 	res = []
 
-	# Driver1 CHROME
-	chrome_options = webdriver.ChromeOptions();
-	chrome_options.add_argument('--headless');		# EJECUCION EN BACKGROUND, invisible
-
 	""" LINEAS PARA DESHABILITAR EL CONTROL DE GOOGLE: "Chrome is being controlled by automated test software" """
-	chrome_options.add_experimental_option("excludeSwitches", ['enable-automation', 'disable-infobars']);
-	
+	chrome_options = webdriver.ChromeOptions();
+	chrome_options.add_argument('--headless');		# EJECUCION EN BACKGROUND
+	chrome_options.add_argument('--disable-notifications')
+
+	#chrome_options.add_experimental_option("excludeSwitches", ['enable-automation', 'disable-infobars']);
+	chrome_options.add_experimental_option("prefs", {"profile.default_content_settings.cookies": 2});
+	## QUITAR COOKIES
+
 	driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options,
 								service_args=['--verbose', '--log-path=/tmp/chromedriver.log']);
-
-
+	
+	i = 0			# Contador para aceptar cookies con la primera busqueda
 	for termino in terminos:
 		""" Creamos el link de búsqueda con el término correspondiente """
 		link = "https://es.search.yahoo.com/search?p=" + termino
@@ -268,19 +273,54 @@ def buscar2(terminos):
 		""" Abrimos la URL con la búsqueda """
 		driver.get(link)
 
+		if i==0:
+			#### PROBLEMA DE YAHOO: Aparece VENTANA DE COOKIES, que nos impide ver primeramente la busqueda
+			# find(BOTON), lo pulsamos y ya tenemos la busqueda "limpia"
+			print("\nBUSCA BOTON DE ACEPTAR COOKIES")
+
+			#RESULT = driver.find_elements_by_link_text("Acepto")
+			#RESULT = driver.find_elements_by_xpath("//*[contains(text(), 'Acepto')]")
+			OKButton = driver.find_elements_by_xpath("//button[@class='btn primary' and @value='agree']")[0]
+			print(OKButton)
+			OKButton.click()	# Pulsamos el boton y aceptamos las cookies
+
+		#RESULT = driver.find_elements_by_class_name("btn primary")
+		#RESULT = driver.find_element(By.id("btn primary")); 
+
+
+		# Volvemos a buscar pero con la opcion seleccionada de "Paginas en español"
+		###### Primero desplegabe: <span class="ml-1u mb-1 ico down-arrow-dgray-thin" id="yui_3_10_0_1_1590001676271_115"></span>
+		### Clickar, seleccionar la de espania!!!
+		
+		"""select_espania = driver.find_elements_by_xpath("//li[@class='mb-0 last']")[0]
+		print("\n\nVIENE SELECT SPAIN")
+		print(select_espania)
+		select_espania.click()	# Pulsamos el boton y vemos los resultados de paginas en español
+		"""
 
 		""" Buscamos por tags, en nuestro caso, queremos buscar el tag con <div id="result-stats"> """
 		content = driver.page_source
+		#print("\n\n")
+		#print(content)
+		#print("\n\n\n")
 		#soup = BeautifulSoup(content, "html.parser")
 		## NOTA: Podemos mejorar el rendimiento con el parseador lxml, instalado en pip3
 		soup = BeautifulSoup(content, "lxml")
-		# Busca el tag span que empieza con yui_3... donde esta el numero de resultados
+		#print(soup)
 		#RESULT = soup.find_all("span", id=re.compile(r"^yui_3_10_0_1"))
-		RESULT = soup.find_all("span")
+		#RESULT = soup.find_all(string="resultados")
+		#RESULT = soup.find_all(string=re.compile('^resultados'))
+		#RESULT = content.find("resultados")
+
+		RESULT = soup.find("span", string=re.compile('resultados'))
 
 		""" Obtenemos del texto el número de resultados """
 		resu = str(RESULT)
 		print("\nRESULT: " + resu)
+
+		# Aceptamos las cookies
+		#RESULT.click()
+
 
 		""" buscamos el numero de resultados por la cadena de resultados (<...> X resultados)"""
 		iniIndex = resu.find(">")		# Encuentra el primer cierre del tag que nos deja justo antes de X
@@ -292,10 +332,12 @@ def buscar2(terminos):
 		print(num)
 		res.append(str(num))
 
-	""" Cerramos las pestaña abierta """
+		i+=1	# Para las cookies la primera vez
+
+	""" Cerramos la pestaña abierta """
 	driver.close()
 
-	""" Devolvemos la lista de resultados"""
+	""" Devolvemos el número de resultados de buscar el termino """
 	return res
 
 

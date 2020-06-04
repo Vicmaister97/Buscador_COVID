@@ -43,14 +43,15 @@ def main():
 
 	chrome_options.add_experimental_option("excludeSwitches", ['enable-automation', 'disable-infobars']);
 	
-	driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options,
-								service_args=['--verbose', '--log-path=/tmp/chromedriver.log']);
+	driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options );
+	# ,service_args=['--verbose', '--log-path=/tmp/chromedriver.log' )
 	
 
 	""" Lista con el numero de resultados por termino de busqueda """
 	resultados = []
 	resultados_groups = []
 	busquedas_groups = []
+	busquedas = []
 
 	"""busquedas = ["*.es"]"""
 	""" Lista(array numpy) con las búsquedas a realizar en Google """
@@ -66,6 +67,7 @@ def main():
 					"alarma * coronavirus *.es", "gratitud * coronavirus *.es", "aplausos * coronavirus *.es", "agradecimiento * coronavirus *.es",
 					"vacuna * coronavirus *.es", "mortalidad * coronavirus *.es", "muerte * coronavirus *.es"] )
 	
+
 
 	# REORGANIZAMOS LA LISTA DE BÚSQUEDA PARA AGRUPAR LOS TÉRMINOS EN FUNCION DE POOLSIZE!!!
 	init_len = len(busquedas)
@@ -153,9 +155,8 @@ def buscar(terminos):
 
 	chrome_options.add_experimental_option("excludeSwitches", ['enable-automation', 'disable-infobars']);
 		
-	driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options,
-								service_args=['--verbose', '--log-path=/tmp/chromedriver.log']);
-	
+	driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options );
+	# , service_args=['--verbose', '--log-path=/tmp/chromedriver.log'] )
 
 	for termino in terminos:
 		""" Creamos el link de búsqueda con el término correspondiente """
@@ -164,7 +165,7 @@ def buscar(terminos):
 
 		""" Establecemos un tiempo entre las búsquedas para evitar CAPTCHA de Google """
 		wait = random()
-		time.sleep(wait)
+		time.sleep(wait)*2
 
 		""" Abrimos la URL con la búsqueda """
 		driver.get(link)

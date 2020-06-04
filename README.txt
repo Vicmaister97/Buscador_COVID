@@ -2,6 +2,13 @@ COMPLETAR DESCRIPCIÓN Y EXPLICACIÓN DEL PROGRAMA
 
 + Detallar cómo se han obtenido los resultados
 
+
+-.-.-.-.-.- ERRORES -.-.-.-.-.-
+
+2-6-20		Versiones chromedriver y google chrome DEBEN COINCIDIR!	Establecida v83
+??		Ruta correcta a chromedriver
+
+
 -.-.-.-.-.- FUENTES -.-.-.-.-.-
 
 **** FUNCIONAMIENTO BEAUTIFULSOUP: https://www.crummy.com/software/BeautifulSoup/bs4/doc/

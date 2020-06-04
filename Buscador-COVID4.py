@@ -3,6 +3,9 @@
 """ Autor: Víctor García Carrera victorgarciacarrera@gmail.com
 	Descarga el contenido del buscador de google con un término
 	de búsqueda concreto y guarda el NUMERO DE RESULTADOS
+
+	v4.0 del buscador, utiliza 2 drivers (Firefox y Chrome) para
+	realizar las búsquedas en Google (resultados similares)
 """
 
 import sys
@@ -36,7 +39,7 @@ POOLSIZE = 10
 	
 """
 
-#@#@#@#@#@ PONER MEJOR EL START TIME (despues de inicializar listas) y 2 para los 2 drivers #@#@#@#@#@
+#@#@#@#@#@ DONEEEE:: PONER MEJOR EL START TIME (despues de inicializar listas) y 2 para los 2 drivers #@#@#@#@#@
 
 def main():
 
@@ -73,7 +76,7 @@ def main():
 	
 	""" Variables de busquedas y resultados """	
 	busquedas_groups = []		#  Lista con las busquedas agrupadas
-	resultados_groups = []		#  Lista con los resultados agrupados
+	resultados_groups = []		#  Lista con los resultados agrupados DE LOS 2 DRIVERS!!
 
 	# Listas por cada BUSCADOR de los resultados obtenidos
 	resultados1 = []		# Resultados de Google
@@ -110,7 +113,7 @@ def main():
 	print busquedas_groups"""
 
 	
-	# Recorremos la lista de búsquedas agrupando por terminos
+	# Recorremos la lista de búsquedas agrupando por terminos PARA OPTIMIZAR
 	for pos in range(0,init_len):
 		if pos%groups==0:
 			terms = []
@@ -284,7 +287,7 @@ def buscar(terminos):
 			print("\n" + link)
 
 			""" Establecemos un tiempo entre las búsquedas para evitar CAPTCHA de Google """
-			wait = random()
+			wait = random()*2
 			time.sleep(wait)
 
 			""" Abrimos la URL con la búsqueda """
