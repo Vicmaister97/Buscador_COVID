@@ -3,6 +3,9 @@ COMPLETAR DESCRIPCIÓN Y EXPLICACIÓN DEL PROGRAMA
 + Detallar cómo se han obtenido los resultados
 
 
+++++++ PROXY OCULTAR DIRECCION IP!!!!!!!!!!!!
+
+
 -.-.-.-.-.- ERRORES -.-.-.-.-.-
 
 2-6-20		Versiones chromedriver y google chrome DEBEN COINCIDIR!	Establecida v83

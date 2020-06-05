@@ -165,7 +165,7 @@ def buscar(terminos):
 
 		""" Establecemos un tiempo entre las búsquedas para evitar CAPTCHA de Google """
 		wait = random()
-		time.sleep(wait)*2
+		time.sleep(wait)
 
 		""" Abrimos la URL con la búsqueda """
 		driver.get(link)
