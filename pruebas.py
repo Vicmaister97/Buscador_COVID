@@ -27,7 +27,7 @@ import re
 from concurrent.futures import ProcessPoolExecutor
 # Para ver si procesos o threads: https://dev.to/rhymes/how-to-make-python-code-concurrent-with-3-lines-of-code-2fpe
 
-POOLSIZE = 10
+POOLSIZE = 100
 
 """ ### FALTA HACER LISTA DE DRIVERS (meter @|FIREFOX|@) +
 	###		+ CALCULO DE RESULTADOS (estadisticas, valorar con desviacion respecto a la media...)
