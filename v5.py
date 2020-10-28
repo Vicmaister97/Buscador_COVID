@@ -3,6 +3,9 @@
 """ Autor: Víctor García Carrera victorgarciacarrera@gmail.com
 	Descarga el contenido del buscador de google con un término
 	de búsqueda concreto y guarda el NUMERO DE RESULTADOS
+
+	v5.0 utiliza 1 driver (Chrome) y busca en 2 MOTORES!!!
+	En Google y Yahoo!!!
 """
 
 import sys
@@ -276,6 +279,10 @@ def buscar2(terminos):
 		if i==0:
 			#### PROBLEMA DE YAHOO: Aparece VENTANA DE COOKIES, que nos impide ver primeramente la busqueda
 			# find(BOTON), lo pulsamos y ya tenemos la busqueda "limpia"
+
+			# VALORAR 		alert = driver.switch_to_alert () !!!!!!!!!
+				# Devolverá el objeto alerta actualmente abierto, podemos aceptar, despedir...
+
 			print("\nBUSCA BOTON DE ACEPTAR COOKIES")
 
 			#RESULT = driver.find_elements_by_link_text("Acepto")

@@ -51,11 +51,32 @@ def main():
 	resultados = []
 	resultados_groups = []
 	busquedas_groups = []
+	busquedas_groups2 = []
 	busquedas = []
+	busquedas2 = []
 
 	"""busquedas = ["*.es"]"""
 	""" Lista(array numpy) con las búsquedas a realizar en Google """
-	busquedas = np.array( ["*.es", "coronavirus *.es", "crisis * coronavirus *.es", "calma * coronavirus *.es", "esperanza * coronavirus *.es" ,  
+	busquedas = np.array( ["*.es", "covid-19 *.es", "crisis * covid-19 *.es", "calma * covid-19 *.es", "esperanza * covid-19 *.es" ,  
+					"pánico * covid-19 *.es", "miedo * covid-19 *.es", "ansiedad * covid-19 *.es", "terror * covid-19 *.es",       
+					"inseguridad * covid-19*.es", "enfado * covid-19 *.es", "rabia * covid-19 *.es", "ira * covid-19 *.es" , 
+					"alegría * covid-19 *.es", "tristeza * covid-19 *.es" , "sorpresa * covid-19 *.es", "alivio * covid-19 *.es",
+					"desconfianza * covid-19 *.es", "incertidumbre * covid-19 *.es", "sanidad * covid-19 *.es", "aislamiento * covid-19 *.es", 
+					"cuarentena * covid-19 *.es", "solidaridad * covid-19 *.es", "cooperación * covid-19 *.es", "protección * covid-19 *.es",
+					"irresponsable * covid-19 *.es", "polític* * covid-19 *.es", "polític* * irresponsable* * covid-19 *.es", "medic* * covid-19 *.es",
+					"cura * covid-19 *.es", "abastecimiento * covid-19 *.es", "alimentos crisis * covid-19 *.es", "alimentos * covid-19 *.es",   
+					"aislamiento * covid-19 *.es", "memes * covid-19 *.es", "bromas * covid-19 *.es", "chistes * covid-19 *.es", 
+					"alarma * covid-19 *.es", "gratitud * covid-19 *.es", "aplausos * covid-19 *.es", "agradecimiento * covid-19 *.es",
+					"vacuna * covid-19 *.es", "mortalidad * covid-19 *.es", "muerte * covid-19 *.es"] )
+	
+	# Gestionamos otra lista de términos de búsqueda, buscando coronavirus en vez de covid-19
+	for term in busquedas:
+		new_term = term.replace('covid-19', 'coronavirus')
+		busquedas2.append(new_term)
+
+	print(busquedas2)
+
+	"""busquedas2 = np.array( ["*.es", "coronavirus *.es", "crisis * coronavirus *.es", "calma * coronavirus *.es", "esperanza * coronavirus *.es" ,  
 					"pánico * coronavirus *.es", "miedo * coronavirus *.es", "ansiedad * coronavirus *.es", "terror * coronavirus *.es",       
 					"inseguridad * coronavirus*.es", "enfado * coronavirus *.es", "rabia * coronavirus *.es", "ira * coronavirus *.es" , 
 					"alegría * coronavirus *.es", "tristeza * coronavirus *.es" , "sorpresa * coronavirus *.es", "alivio * coronavirus *.es",
@@ -66,7 +87,7 @@ def main():
 					"aislamiento * coronavirus *.es", "memes * coronavirus *.es", "bromas * coronavirus *.es", "chistes * coronavirus *.es", 
 					"alarma * coronavirus *.es", "gratitud * coronavirus *.es", "aplausos * coronavirus *.es", "agradecimiento * coronavirus *.es",
 					"vacuna * coronavirus *.es", "mortalidad * coronavirus *.es", "muerte * coronavirus *.es"] )
-	
+	"""
 
 
 	# REORGANIZAMOS LA LISTA DE BÚSQUEDA PARA AGRUPAR LOS TÉRMINOS EN FUNCION DE POOLSIZE!!!
@@ -83,12 +104,16 @@ def main():
 	for pos in range(0,init_len):
 		if pos%groups==0:
 			terms = []
+			terms2 = []
 		terms.append(busquedas[pos])
+		terms2.append(busquedas2[pos])
 		if pos%groups==(groups-1) or pos==(init_len-1):	# Hemos llenado un grupo de terminos
 			busquedas_groups.append(terms)
+			busquedas_groups2.append(terms2)
 
 	# Obtemos el array de búsquedas con subarrays agrupados para mejorar la búsqueda
-	print(busquedas_groups)
+	#print(busquedas_groups)
+	#print(busquedas_groups2)
 	
 	"""SECUENCIAL!!"""
 	""" Seleccionamos uno a uno los términos a buscar para obtener su número de resultados """
@@ -103,44 +128,57 @@ def main():
 
 	executor = ProcessPoolExecutor(POOLSIZE)
 
-	## Inicio TIME
-	start_time = time.time()
+	for x in range(2):
+		if x==0:		# primera busqueda con busquedas_groups con covid-19
+			busq = busquedas_groups
+			name = "covid-19_"
+			search = busquedas
+		else:			# segunda busqueda con busquedas_groups2 con coronavirus
+			busq = busquedas_groups2
+			name = "coronavirus_"
+			search = busquedas2
 
-	#timeout=None, chunksize=1000
-	resultados_groups = list(executor.map(buscar, busquedas_groups))
+		resultados = []
 
-	## Tiempo de busqueda
-	busqueda_time = time.time() - start_time
+		## Inicio TIME
+		start_time = time.time()
+
+		#timeout=None, chunksize=1000
+		resultados_groups = list(executor.map(buscar, busq))
+
+		## Tiempo de busqueda
+		busqueda_time = time.time() - start_time
+
+		for arr in resultados_groups:
+			for res in arr:
+				resultados.append(res)
+
+		print("\n\nResultados: " + str(resultados))
+
+		""" Escribimos en un fichero BUSQUEDA *.es: NUMERO DE RESULTADOS: 500"""
+		ahora = datetime.now()
+		nombre = name + str(ahora.day) + "-" + str(ahora.month) + "-" + str(ahora.year) + "_v3" + ".txt"
+		"""if (ahora.hour < 14 and ahora.hour > 2):
+			nombre += " Morning" + ".txt"
+		else:
+			nombre += " Noche" + ".txt"
+		"""
+		f = open(nombre, "w+")
+		f.write("***\tBuscador v3.0 \t Archivo con el número de resultados obtenidos por término de búsqueda en GOOGLE\t***")
+		f.write("\n***\tFECHA: " + str(ahora) + "\t***\n\n")
+		f.write("TÉRMINO DE BÚSQUEDA\t\tNÚMERO APROXIMADO DE RESULTADOS\n")
+
+		for j in range(0, len(resultados)):
+			linea = "\n" + search[j] + "\t\t" + str(resultados[j])
+			f.write(linea)
+
+		f.write("\n\nTIEMPO DE BUSQUEDA(en segundos): " + str(busqueda_time))
+
+		f.close()
 
 	# Cierra todas las ventanas de búsqueda y finaliza correctamente la sesión WebDriver
 	driver.quit()
 
-	for arr in resultados_groups:
-		for res in arr:
-			resultados.append(res)
-
-	print("\n\nResultados: " + str(resultados))
-
-	""" Escribimos en un fichero BUSQUEDA *.es: NUMERO DE RESULTADOS: 500"""
-	ahora = datetime.now()
-	nombre = str(ahora.day) + "-" + str(ahora.month) + "-" + str(ahora.year) + "_v3" + ".txt"
-	"""if (ahora.hour < 14 and ahora.hour > 2):
-		nombre += " Morning" + ".txt"
-	else:
-		nombre += " Noche" + ".txt"
-	"""
-	f = open(nombre, "w+")
-	f.write("***\tBuscador v3.0 \t Archivo con el número de resultados obtenidos por término de búsqueda en GOOGLE\t***")
-	f.write("\n***\tFECHA: " + str(ahora) + "\t***\n\n")
-	f.write("TÉRMINO DE BÚSQUEDA\t\tNÚMERO APROXIMADO DE RESULTADOS\n")
-
-	for j in range(0, len(resultados)):
-		linea = "\n" + busquedas[j] + "\t\t" + str(resultados[j])
-		f.write(linea)
-
-	f.write("\n\nTIEMPO DE BUSQUEDA: " + str(busqueda_time))
-
-	f.close()
 
 
 def buscar(terminos):
