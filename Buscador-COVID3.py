@@ -12,6 +12,7 @@ from random import *
 """ Ejemplo obtenido de: https://www.edureka.co/blog/web-scraping-with-python/ """
 
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 #from selenium.webdriver.common.keys import keys		#The Keys class provide keys in the keyboard like RETURN, F1, ALT etc.
 
 from bs4 import BeautifulSoup		#Libreria bs4 version ultima BeautifulSoup4
@@ -43,7 +44,7 @@ def main():
 
 	chrome_options.add_experimental_option("excludeSwitches", ['enable-automation', 'disable-infobars']);
 	
-	driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options );
+	driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options );
 	# ,service_args=['--verbose', '--log-path=/tmp/chromedriver.log' )
 	
 
@@ -193,7 +194,7 @@ def buscar(terminos):
 
 	chrome_options.add_experimental_option("excludeSwitches", ['enable-automation', 'disable-infobars']);
 		
-	driver = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options );
+	driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options );
 	# , service_args=['--verbose', '--log-path=/tmp/chromedriver.log'] )
 
 	for termino in terminos:
