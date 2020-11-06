@@ -289,7 +289,8 @@ def buscar(terminos):
 	## BUSCAMOS LOS TÉRMINOS
 	for termino in terminos:
 		""" Creamos el link de búsqueda con el término correspondiente """
-		link = "https://www.google.com/search?q=" + termino
+		## v3.2 CAMBIO A google.es!!!!
+		link = "https://www.google.es/search?q=" + termino
 		print("\n" + link)
 
 		""" Establecemos un tiempo entre las búsquedas para evitar CAPTCHA de Google """
