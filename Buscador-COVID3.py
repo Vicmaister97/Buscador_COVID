@@ -231,10 +231,10 @@ def main():
 		""" Escribimos en un fichero BUSQUEDA *.es: NUMERO DE RESULTADOS: 500"""
 		if x<2:		# BUSQUEDAS CLÁSICAS
 			nombre_dir = nombre_dir_clasica
-			nombre_file = nombre_dir + "/" + name + "CLASICO" + str(ahora.day) + "-" + str(ahora.month) + "-" + str(ahora.year) + "_v3" + ".txt"
+			nombre_file = nombre_dir + "/" + name + "CLASICO_" + str(ahora.day) + "-" + str(ahora.month) + "-" + str(ahora.year) + "_v3" + ".txt"
 		else:
 			nombre_dir = nombre_dir_nueva
-			nombre_file = nombre_dir + "/" + name + "NUEVA" + str(ahora.day) + "-" + str(ahora.month) + "-" + str(ahora.year) + "_v3" + ".txt"
+			nombre_file = nombre_dir + "/" + name + "NUEVA_" + str(ahora.day) + "-" + str(ahora.month) + "-" + str(ahora.year) + "_v3" + ".txt"
 
 		"""if (ahora.hour < 14 and ahora.hour > 2):
 			nombre += " Morning" + ".txt"
