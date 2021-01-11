@@ -295,11 +295,15 @@ def buscar(terminos):
 
 		""" Establecemos un tiempo entre las búsquedas para evitar CAPTCHA de Google """
 		## NOTA: (cambiar IP????) ###################
-		wait = random()
+		wait = random()*2
 		time.sleep(wait)
 
 		""" Abrimos la URL con la búsqueda """
-		driver.get(link)
+		""" CDE PARA EVITAR FALLO DE CONEXIONES!!!! """
+		try:
+			driver.get(link)
+		except requests.exceptions.ConnectionError:
+			buscar(terminos)		# Retry
 
 
 		""" Buscamos por tags, en nuestro caso, queremos buscar el tag con <div id="result-stats"> """

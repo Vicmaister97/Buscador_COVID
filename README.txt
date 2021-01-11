@@ -1,5 +1,6 @@
 COMPLETAR DESCRIPCIÓN Y EXPLICACIÓN DEL PROGRAMA
 
++++ SCRIPT DONDE SE EJECUTA NECESITA CARPETAS DEBUG y check_auto!!!
 + Detallar cómo se han obtenido los resultados
 
 ++ BUSQUEDAS EN DOMINIO ESPAÑOL (blabla.es, sitios con IP española)
