@@ -1,6 +1,6 @@
 # coding=utf-8
 
-""" Autor: Víctor García Carrera victorgarciacarrera@gmail.com
+""" Autor: Víctor García Carrera, victorgarciacarrera@gmail.com
 	Descarga el contenido del buscador de google con un término
 	de búsqueda concreto y guarda el NUMERO DE RESULTADOS
 """
