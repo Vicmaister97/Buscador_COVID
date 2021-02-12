@@ -1,0 +1,711 @@
+25_11_2020
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-11-27
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+
+
+26_11_2020
+Lo siento, no es día de toma de datos. FIN
+
+
+
+27_11_2020
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-11-30
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+
+
+
+28_11_2020
+Lo siento, no es día de toma de datos. FIN
+
+
+sáb nov 28 17:23:19 CET 2020
+Lo siento, no es día de toma de datos. FIN
+
+
+sáb nov 28 17:41:05 CET 2020
+Lo siento, no es día de toma de datos. FIN
+
+
+dom nov 29 11:56:41 CET 2020
+Lo siento, no es día de toma de datos. FIN
+
+
+dom nov 29 17:06:08 CET 2020
+Lo siento, no es día de toma de datos. FIN
+
+
+
+dom nov 29 23:05:55 CET 2020
+Lo siento, no es día de toma de datos. FIN
+
+
+
+lun nov 30 11:27:47 CET 2020
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-02
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Wed Dec  2 11:00:00 2020
+
+
+
+lun nov 30 11:55:45 CET 2020
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-02
+Ya se han enviado HOY los datos, FIN
+
+
+
+lun nov 30 11:56:08 CET 2020
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-02
+Ya se han enviado HOY los datos, FIN
+
+---------------------------------------------------------------------------------
+		DICIEMBRE
+---------------------------------------------------------------------------------
+
+mar dic  1 11:55:08 CET 2020
+Lo siento, no es día de toma de datos. FIN
+
+
+
+mié dic  2 12:02:36 CET 2020
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-04
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Fri Dec  4 11:00:00 2020
+
+
+
+mié dic  2 13:10:24 CET 2020
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-04
+Ya se han enviado HOY los datos, FIN
+
+
+
+mié dic  2 14:24:22 CET 2020
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-04
+Ya se han enviado HOY los datos, FIN
+
+
+
+jue dic  3 12:32:18 CET 2020
+Lo siento, no es día de toma de datos. FIN
+
+
+
+sáb dic  5 16:52:02 CET 2020
+Lo siento, no es día de toma de datos. FIN
+
+
+
+dom dic  6 10:34:18 CET 2020
+Lo siento, no es día de toma de datos. FIN
+
+
+
+lun dic  7 11:56:16 CET 2020
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-09
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Wed Dec  9 11:00:00 2020
+
+
+
+lun dic  7 13:04:59 CET 2020
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-09
+Ya se han enviado HOY los datos, FIN
+
+
+
+lun 07 dic 2020 15:19:09 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-09
+Ya se han enviado HOY los datos, FIN
+
+
+
+lun 07 dic 2020 18:04:46 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-09
+Ya se han enviado HOY los datos, FIN
+
+
+
+mar 08 dic 2020 14:43:01 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+mié 09 dic 2020 12:37:28 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-11
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Fri Dec 11 11:00:00 2020
+
+
+
+jue 10 dic 2020 13:02:36 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+vie 11 dic 2020 12:01:11 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-14
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Mon Dec 14 11:00:00 2020
+
+
+
+sáb 12 dic 2020 13:30:17 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+lun 14 dic 2020 15:43:23 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-16
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Wed Dec 16 11:00:00 2020
+
+
+
+mar 15 dic 2020 18:23:43 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+mié 16 dic 2020 11:31:10 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-18
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Fri Dec 18 11:00:00 2020
+
+
+
+jue 17 dic 2020 12:27:49 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+vie 18 dic 2020 11:58:20 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-21
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Mon Dec 21 11:00:00 2020
+
+
+
+dom 20 dic 2020 21:33:33 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+lun 21 dic 2020 12:21:27 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-23
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Wed Dec 23 11:00:00 2020
+
+
+
+mar 22 dic 2020 13:45:37 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+mié 23 dic 2020 13:27:57 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-25
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Fri Dec 25 11:00:00 2020
+
+
+
+vie 25 dic 2020 13:30:24 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-28
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Mon Dec 28 11:00:00 2020
+
+
+
+sáb 26 dic 2020 12:44:00 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+lun 28 dic 2020 17:05:21 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2020-12-30
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Wed Dec 30 11:00:00 2020
+
+
+
+mié 30 dic 2020 18:30:55 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-01
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Fri Jan  1 11:00:00 2021
+
+
+
+mié 30 dic 2020 18:36:01 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-01
+Ya se han enviado HOY los datos, FIN
+
+
+
+mié 30 dic 2020 18:36:37 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-01
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Fri Jan  1 11:00:00 2021
+
+
+
+mié 30 dic 2020 19:25:36 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-01
+Ya se han enviado HOY los datos, FIN
+
+
+
+mié 30 dic 2020 19:32:31 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-01
+Ya se han enviado HOY los datos, FIN
+
+
+
+mié 30 dic 2020 19:56:35 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-01
+Ya se han enviado HOY los datos, FIN
+
+
+
+mié 30 dic 2020 20:07:34 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-01
+Ya se han enviado HOY los datos, FIN
+
+
+
+mié 30 dic 2020 20:19:30 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-01
+Ya se han enviado HOY los datos, FIN
+
+
+
+mié 30 dic 2020 20:28:00 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-01
+Ya se han enviado HOY los datos, FIN
+
+
+
+mié 30 dic 2020 20:57:09 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-01
+Ya se han enviado HOY los datos, FIN
+
+
+
+vie 01 ene 2021 13:33:06 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-04
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Mon Jan  4 11:00:00 2021
+
+
+
+lun 04 ene 2021 12:01:31 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-06
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Wed Jan  6 11:00:00 2021
+
+
+
+mié 06 ene 2021 12:01:30 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-08
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Fri Jan  8 11:00:00 2021
+
+
+
+mié 06 ene 2021 12:48:02 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-08
+Ya se han enviado HOY los datos, FIN
+
+
+
+vie 08 ene 2021 12:54:32 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-11
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Mon Jan 11 11:00:01 2021
+
+
+
+vie 08 ene 2021 14:33:24 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-11
+Ya se han enviado HOY los datos, FIN
+
+
+
+vie 08 ene 2021 15:04:37 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-11
+Ya se han enviado HOY los datos, FIN
+
+
+
+vie 08 ene 2021 15:14:31 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-11
+Ya se han enviado HOY los datos, FIN
+
+
+
+vie 08 ene 2021 19:16:54 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-11
+Ya se han enviado HOY los datos, FIN
+
+
+
+vie 08 ene 2021 19:34:26 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-11
+Ya se han enviado HOY los datos, FIN
+
+
+
+vie 08 ene 2021 19:43:44 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-11
+Ya se han enviado HOY los datos, FIN
+
+
+
+sáb 09 ene 2021 12:09:36 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+dom 10 ene 2021 00:28:23 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+lun 11 ene 2021 12:22:30 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-13
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Wed Jan 13 11:00:00 2021
+
+
+
+lun 11 ene 2021 12:45:50 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-13
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Wed Jan 13 11:00:00 2021
+
+
+
+lun 11 ene 2021 17:47:01 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-13
+Ya se han enviado HOY los datos, FIN
+
+
+
+mar 12 ene 2021 11:45:40 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+mié 13 ene 2021 11:01:44 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-15
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Fri Jan 15 10:59:59 2021
+
+
+
+jue 14 ene 2021 11:26:54 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+vie 15 ene 2021 12:04:13 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-18
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Mon Jan 18 11:00:00 2021
+
+
+
+lun 18 ene 2021 12:01:37 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-20
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Wed Jan 20 11:00:00 2021
+
+
+
+mié 20 ene 2021 12:01:17 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-22
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Fri Jan 22 11:00:01 2021
+
+
+
+vie 22 ene 2021 12:01:20 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-25
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Mon Jan 25 11:00:00 2021
+
+
+
+vie 22 ene 2021 12:55:36 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-25
+Ya se han enviado HOY los datos, FIN
+
+
+
+dom 24 ene 2021 19:03:19 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+dom 24 ene 2021 21:02:36 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+lun 25 ene 2021 12:11:53 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-27
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Wed Jan 27 11:00:00 2021
+
+
+
+mié 27 ene 2021 12:01:12 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-01-29
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Fri Jan 29 11:00:00 2021
+
+
+
+jue 28 ene 2021 10:54:46 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+vie 29 ene 2021 12:19:01 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-02-01
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Mon Feb  1 11:00:00 2021
+
+
+
+vie 29 ene 2021 13:03:06 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-02-01
+Ya se han enviado HOY los datos, FIN
+
+
+
+sáb 30 ene 2021 12:26:32 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+dom 31 ene 2021 11:58:23 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+lun 01 feb 2021 12:13:31 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-02-03
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Wed Feb  3 11:00:00 2021
+
+
+
+
+mar 02 feb 2021 11:42:35 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+jue 04 feb 2021 09:51:31 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+vie 05 feb 2021 12:25:22 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-02-08
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Mon Feb  8 10:59:59 2021
+
+
+
+lun 08 feb 2021 12:01:15 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-02-10
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Wed Feb 10 11:00:00 2021
+
+
+
+mar 09 feb 2021 12:18:43 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+mar 09 feb 2021 17:05:07 CET
+Lo siento, no es día de toma de datos. FIN
+
+
+
+mié 10 feb 2021 11:43:56 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Wed Feb 10 11:00:02 2021
+
+
+
+vie 12 feb 2021 11:26:01 CET
+DIA SIGUIENTE DE TOMA DE DATOS:
+2021-02-15
+STARTUP-SCRIPT que ejecuta el Buscador-COVID3.py
+FINALIZADO EL BUSCADOR!!!
+Enviamos los datos (POR HACER)
+rtcwake: se asume que RTC utiliza UTC ...
+rtcwake: despierta utilizando /dev/rtc0 a las Mon Feb 15 10:59:59 2021

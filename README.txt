@@ -1,6 +1,16 @@
 COMPLETAR DESCRIPCIÓN Y EXPLICACIÓN DEL PROGRAMA
 
++++ SCRIPT DONDE SE EJECUTA NECESITA CARPETAS DEBUG y check_auto!!!
 + Detallar cómo se han obtenido los resultados
+
+++ BUSQUEDAS EN DOMINIO ESPAÑOL (blabla.es, sitios con IP española)
+## WEB DONDE COMENTA LA DIFERENCIA EN LAS BÚSQUEDAS:
+	https://sites.google.com/site/recursosdweb20idiomas/google
+## OPCION MEJOR PERO MAS CURRO, tampoco cambia mucho los resultados:
+	- INCÓGNITO!!! Útil pero no cambia mucho al crearse al momento el driver (no hay histórico ni usuario previo)
+	- BUSQUEDA AVANZADA, no da el número aproximado de resultados (xdd)
+	https://rockcontent.com/es/blog/resultados-de-otro-pais/
+
 
 
 ++++++ PROXY OCULTAR DIRECCION IP!!!!!!!!!!!!
