@@ -9,7 +9,7 @@ if [ $(date +%u) -ne 1 ] && [ $(date +%u) -ne 3 ] && [ $(date +%u) -ne 5 ]; then
     echo 'Lo siento, no es día de toma de datos. FIN' >> $FILE_DEBUG
     exit
 fi
-if [ $(date +%u) -eq 1 ] || [ $(date +%u) -eq 2 ]; then		## lunes o miercoles
+if [ $(date +%u) -eq 1 ] || [ $(date +%u) -eq 3 ]; then		## lunes o miercoles
 	NEXT_DATE="$(date --date='+2 day' +%Y-%m-%d)"
 fi
 if [ $(date +%u) -eq 5 ]; then								## viernes
