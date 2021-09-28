@@ -96,6 +96,9 @@ def main():
 
 	f.close()
 
+	# Cierra todas las ventanas de búsqueda y finaliza correctamente la sesión WebDriver
+	driver.quit()
+
 
 def buscar(termino):
 

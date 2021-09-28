@@ -69,7 +69,7 @@ def main():
 
 		""" Buscamos por tags, en nuestro caso, queremos buscar el tag con <div id="result-stats"> """
 		content = driver.page_source
-		soup = BeautifulSoup(content)
+		soup = BeautifulSoup(content, "lxml")
 		RESULT = soup.find(id ="result-stats")
 
 		""" Obtenemos del texto el número de resultados """
@@ -104,6 +104,9 @@ def main():
 
 	f.write("\n\nTIEMPO DE BUSQUEDA(en segundos): " + str(busqueda_time))
 	f.close()
+
+	# Cierra todas las ventanas de búsqueda y finaliza correctamente la sesión WebDriver
+	driver.quit()
 
 
 
