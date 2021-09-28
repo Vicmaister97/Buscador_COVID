@@ -13,7 +13,9 @@ from random import *
 """ Ejemplo obtenido de: https://www.edureka.co/blog/web-scraping-with-python/ """
 
 from selenium import webdriver
-from BeautifulSoup import BeautifulSoup
+from webdriver_manager.chrome import ChromeDriverManager
+
+from bs4 import BeautifulSoup		#Libreria bs4 version ultima BeautifulSoup4
 import pandas as pd
 import string
 import time
@@ -23,12 +25,12 @@ from datetime import datetime
 def main():
 
 	""" Establecemos el path al chromedriver"""
-	driver = webdriver.Chrome("/usr/bin/chromedriver")
+	#driver = webdriver.Chrome("/usr/bin/chromedriver")
 
 	""" LINEAS PARA DESHABILITAR EL CONTROL DE GOOGLE: "Chrome is being controlled by automated test software" """
 	chrome_options = webdriver.ChromeOptions(); 
 	chrome_options.add_experimental_option("excludeSwitches", ['enable-automation', 'disable-infobars']);
-	driver = webdriver.Chrome(options=chrome_options);
+	driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options);
 	
 	""" Lista con el numero de resultados por termino de busqueda """
 	resultados = []
@@ -47,6 +49,10 @@ def main():
 					"* alarma * coronavirus *.es", "* gratitud * coronavirus *.es", "* aplausos * coronavirus *.es", "* agradecimiento * coronavirus *.es",
 					"* vacuna * coronavirus *.es", "* mortalidad * coronavirus *.es", "* muerte * coronavirus *.es"]
 	
+	## Inicio TIME
+	start_time = time.time()
+
+
 	""" Seleccionamos uno a uno los términos a buscar para obtener su número de resultados """
 	for buscar in busquedas:
 		""" Creamos el link de búsqueda con el término correspondiente """
@@ -76,9 +82,14 @@ def main():
 		iniIndex += 16
 		endIndex = resu.find("resultados")
 		num = resu[iniIndex:endIndex]
-		print str(num)
+		print(str(num))
 
 		resultados.append(str(num))
+
+
+	## Tiempo de busqueda
+	busqueda_time = time.time() - start_time
+	busqueda_time = round(busqueda_time,2)
 
 
 	""" Escribimos en un fichero BUSQUEDA *.es: NUMERO DE RESULTADOS: 500"""
@@ -91,6 +102,7 @@ def main():
 		linea = "\n" + busquedas[j] + "\t\t" + resultados[j]
 		f.write(linea)
 
+	f.write("\n\nTIEMPO DE BUSQUEDA(en segundos): " + str(busqueda_time))
 	f.close()
 
 

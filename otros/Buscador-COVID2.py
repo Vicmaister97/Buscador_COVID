@@ -13,6 +13,8 @@ from random import *
 """ Ejemplo obtenido de: https://www.edureka.co/blog/web-scraping-with-python/ """
 
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+
 from bs4 import BeautifulSoup		#Libreria bs4 version ultima BeautifulSoup4
 import pandas as pd
 
@@ -22,18 +24,17 @@ from datetime import datetime
 
 from concurrent.futures import ProcessPoolExecutor
 
-## Inicio TIME
-start_time = time.time()
+
 
 def main():
 
 	""" Establecemos el path al chromedriver"""
-	driver = webdriver.Chrome("/usr/bin/chromedriver")
+	#driver = webdriver.Chrome("/usr/bin/chromedriver")
 
 	""" LINEAS PARA DESHABILITAR EL CONTROL DE GOOGLE: "Chrome is being controlled by automated test software" """
 	chrome_options = webdriver.ChromeOptions(); 
 	chrome_options.add_experimental_option("excludeSwitches", ['enable-automation', 'disable-infobars']);
-	driver = webdriver.Chrome(options=chrome_options);
+	driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options);
 	
 	""" Lista con el numero de resultados por termino de busqueda """
 	resultados = []
@@ -61,9 +62,15 @@ def main():
 		"""
 
 	"""PARALELO!!!!"""
+	## Inicio TIME
+	start_time = time.time()
 	executor = ProcessPoolExecutor(10)
 
 	resultados = list(executor.map(buscar, busquedas))
+	
+	## Tiempo de busqueda
+	busqueda_time = time.time() - start_time
+	busqueda_time = round(busqueda_time,2)
 
 	driver.quit()
 
@@ -85,7 +92,7 @@ def main():
 		linea = "\n" + busquedas[j] + "\t\t" + resultados[j]
 		f.write(linea)
 
-	f.write("\n\nTIEMPO DE BUSQUEDA: " + str(time.time()-start_time))
+	f.write("\n\nTIEMPO DE BUSQUEDA: " + str(busqueda_time))
 
 	f.close()
 
@@ -93,12 +100,12 @@ def main():
 def buscar(termino):
 
 	""" Establecemos el path al chromedriver"""
-	driver = webdriver.Chrome("/usr/bin/chromedriver")
+	#driver = webdriver.Chrome("/usr/bin/chromedriver")
 
 	""" LINEAS PARA DESHABILITAR EL CONTROL DE GOOGLE: "Chrome is being controlled by automated test software" """
 	chrome_options = webdriver.ChromeOptions(); 
 	chrome_options.add_experimental_option("excludeSwitches", ['enable-automation', 'disable-infobars']);
-	driver = webdriver.Chrome(options=chrome_options);
+	driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options);
 
 	""" Creamos el link de búsqueda con el término correspondiente """
 	link = "https://www.google.com/search?q=" + termino
@@ -127,7 +134,7 @@ def buscar(termino):
 	iniIndex += 16
 	endIndex = resu.find("resultados")
 	num = resu[iniIndex:endIndex]
-	print str(num)
+	print(str(num))
 
 	driver.close()
 
